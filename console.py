@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-"""Defines the HBnB console. to be used for the crud actions and Interface for model manipulation"""
+"""Defines the HBnB console. to be used for the crud actions
+and Interface for model manipulation"""
 import cmd
 import re
 from shlex import split
