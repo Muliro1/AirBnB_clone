@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""file_storage.py module for storingand persisting model data."""
+"""file_storage.py module for storing and persisting model data."""
 import json
 from models.base_model import BaseModel
 from models.user import User
