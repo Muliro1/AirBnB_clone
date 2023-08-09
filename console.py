@@ -15,7 +15,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the HBNB command interpreter.
+    """Defines the hbnb command interpreter.
     Attributes:
         prompt (str): The command prompt.
     """
@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """Do nothing upon receiving an empty line."""
+        """Do nothing on receiving an empty line."""
         pass
 
     def default(self, arg):
@@ -83,33 +83,33 @@ class HBNBCommand(cmd.Cmd):
         Display the string representation of a class instance of a given uuid.
         """
         argl = parse(arg)
-        objdict = storage.all()
+        objdictionary = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(argl) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(argl[0], argl[1]) not in objdict:
+        elif "{}.{}".format(argl[0], argl[1]) not in objdictionary:
             print("** no instance found **")
         else:
-            print(objdict["{}.{}".format(argl[0], argl[1])])
+            print(objdictionary["{}.{}".format(argl[0], argl[1])])
 
     def do_destroy(self, arg):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
         Delete a class instance of a given uuid."""
         argl = parse(arg)
-        objdict = storage.all()
+        objdictionary = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(argl) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
+        elif "{}.{}".format(argl[0], argl[1]) not in objdictionary.keys():
             print("** no instance found **")
         else:
-            del objdict["{}.{}".format(argl[0], argl[1])]
+            del objdictionary["{}.{}".format(argl[0], argl[1])]
             storage.save()
 
     def do_all(self, arg):
@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
             a given attribute key/value pair or dictionary. """
 
         argl = parse(arg)
-        objdict = storage.all()
+        objdictionary = storage.all()
 
         if len(argl) == 0:
             print("** class name missing **")
@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         if len(argl) == 1:
             print("** instance id missing **")
             return False
-        if "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
+        if "{}.{}".format(argl[0], argl[1]) not in objdictionary.keys():
             print("** no instance found **")
             return False
         if len(argl) == 2:
@@ -168,14 +168,14 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         if len(argl) == 4:
-            obj = objdict["{}.{}".format(argl[0], argl[1])]
+            obj = objdictionary["{}.{}".format(argl[0], argl[1])]
             if argl[2] in obj.__class__.__dict__.keys():
                 valtype = type(obj.__class__.__dict__[argl[2]])
                 obj.__dict__[argl[2]] = valtype(argl[3])
             else:
                 obj.__dict__[argl[2]] = argl[3]
         elif isinstance(eval(argl[2]), dict):
-            obj = objdict["{}.{}".format(argl[0], argl[1])]
+            obj = objdictionary["{}.{}".format(argl[0], argl[1])]
             for k, v in eval(argl[2]).items():
                 if (k in obj.__class__.__dict__.keys() and
                         type(obj.__class__.__dict__[k]) in {str, int, float}):
