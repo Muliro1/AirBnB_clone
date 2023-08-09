@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Defines the HBnB console. to be used for the crud actions"""
+"""Defines the HBnB console. to be used for the crud actions and Interface for model manipulation"""
 import cmd
 import re
 from shlex import split
@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Usage: create <class>
-        Create a new class instance and print its id.
+        Create a new class instance and print its uuid.
         """
         argl = parse(arg)
         if len(argl) == 0:
@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
-        Display the string representation of a class instance of a given id.
+        Display the string representation of a class instance of a given uuid.
         """
         argl = parse(arg)
         objdict = storage.all()
@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
-        Delete a class instance of a given id."""
+        Delete a class instance of a given uuid."""
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
         """ Usage: update <class> <id> <attribute_name> <attribute_value> or
             <class>.update(<id>, <attribute_name>, <attribute_value>) or
             <class>.update(<id>, <dictionary>)
-            Update a class instance of a given id by adding or updating
+            Update a class instance of a given uuid by adding or updating
             a given attribute key/value pair or dictionary. """
 
         argl = parse(arg)
@@ -187,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
 
 
 def parse(arg):
+    """parse arguments to add <Class>.all() functionality"""
     parentheses = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
     if parentheses is None:
