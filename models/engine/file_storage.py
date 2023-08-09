@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""file_storage.py module"""
+"""file_storage.py module for storingand persisting model data."""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -12,7 +12,7 @@ from models.state import State
 
 class FileStorage():
     """
-    FileStorage class:
+    FileStorage class for storing and persisting model data:
     ------------------
     """
     __file_path = "file.json"
@@ -43,13 +43,13 @@ class FileStorage():
         to the JSON file (path: __file_path).
         Variables:
         ----------
-        new_dict [dict] -- keys and values to build JSON.
+        my_dict [dict] -- keys and values to build JSON.
         """
-        new_dict = {}
+        my_dict = {}
         for key, value in FileStorage.__objects.items():
-            new_dict[key] = value.to_dict().copy()
+            my_dict[key] = value.to_dict().copy()
         with open(FileStorage.__file_path, mode='w') as my_file:
-            json.dump(new_dict, my_file)
+            json.dump(my_dict, my_file)
 
     def reload(self):
         """
@@ -58,9 +58,9 @@ class FileStorage():
         """
         try:
             with open(FileStorage.__file_path, mode='r') as my_file:
-                new_dict = json.load(my_file)
+                my_dict = json.load(my_file)
 
-            for key, value in new_dict.items():
+            for key, value in my_dict.items():
                 class_name = value.get('__class__')
                 obj = eval(class_name + '(**value)')
                 FileStorage.__objects[key] = obj
