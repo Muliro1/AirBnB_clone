@@ -9,7 +9,7 @@ import models
 
 
 class BaseModel():
-    '''class BaseModel base class'''
+    '''class BaseModel base class for all other models'''
     def __init__(self, *args, **kwargs):
         '''class constructor for class BaseModel'''
         if kwargs:
