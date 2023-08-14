@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    '''class State'''
+    '''class State that inherits from the base class'''
 
     name = ""
 

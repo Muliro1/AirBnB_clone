@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    '''class city'''
+    '''class city that inherits from the base class'''
 
     state_id = ""
     name = ""

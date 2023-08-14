@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    '''class Review'''
+    '''class Review that inherits from the base class'''
 
     place_id = ""
     user_id = ""
